@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConnectionHelper {
     Connection conn;
@@ -66,35 +68,28 @@ public class ConnectionHelper {
         }
     }
 
-    public String[][] getServices(String need, String city) {
+    public List<Item> getServices(String need, String city) {
         try {
-            int count = 0;
+            List<Item> serv = new ArrayList<>();
             Connection serviceConn = ConnectionBuild();
-            PreparedStatement pstmt1 = serviceConn.prepareStatement("SELECT COUNT(*) FROM services WHERE city='" + city + "' " +
-                    "AND (service1='" + need + "' OR service2='" + need + "' OR service3='" + need + "' OR service4='" + need + "' OR service5='" + need + "')");
-            ResultSet rs1 = pstmt1.executeQuery();
-            while (rs1.next()) {
-                count = rs1.getInt(1);
-            }
 
-            String[][] serv = new String[count][4];
             PreparedStatement pstmt2 = serviceConn.prepareStatement("SELECT name, phone, service1, service2, service3, service4, service5, locality FROM services WHERE city='" + city + "' " +
                     "AND (service1='" + need + "' OR service2='" + need + "' OR service3='" + need + "' OR service4='" + need + "' OR service5='" + need + "')");
             ResultSet rs2 = pstmt2.executeQuery();
 
-            int i = 0;
             while(rs2.next()) {
-                serv[i][0] = rs2.getString(1);
-                serv[i][1] = rs2.getString(2);
-                serv[i][2] = rs2.getString(3) + ", " + rs2.getString(4) + ", " + rs2.getString(5) + ", " + rs2.getString(6) + ", " + rs2.getString(7);
-                serv[i][3] = rs2.getString(8);
-                i++;
+                String name = rs2.getString(1);
+                String phone = rs2.getString(2);
+                String servOff = rs2.getString(3) + ", " + rs2.getString(4) + ", " + rs2.getString(5) + ", " + rs2.getString(6) + ", " + rs2.getString(7);
+                String locality = rs2.getString(8);
+
+                Item item = new Item(name, phone, servOff, locality);
+                serv.add(item);
             }
             return serv;
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
         }
-
         return null;
     }
 }

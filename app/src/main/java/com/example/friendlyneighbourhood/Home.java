@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Activity;
@@ -56,7 +58,6 @@ import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 
 public class Home extends AppCompatActivity {
-    TableView servicesTable;
     String need;
     Spinner allServices;
     Button search;
@@ -69,8 +70,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         allServices = findViewById(R.id.spin_allServices);
-        String[] available = {"Electrician", "Plumber", "Gardener"};
-        ArrayAdapter servAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, available);
+        String[] neededServices = {"Electrician", "Plumber", "Gardener"};
+        ArrayAdapter servAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, neededServices);
         servAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         allServices.setAdapter(servAdapter);
         search = findViewById(R.id.but_searchServices);
@@ -106,20 +107,12 @@ public class Home extends AppCompatActivity {
     private void search() {
         need = allServices.getSelectedItem().toString();
         ConnectionHelper ch = new ConnectionHelper();
-        servicesTable = findViewById(R.id.table_search_services);
 
-        TableColumnDpWidthModel columnModel = new TableColumnDpWidthModel(Home.this, 4, 100);
-        columnModel.setColumnWidth(1, 100);
-        columnModel.setColumnWidth(2, 100);
-        columnModel.setColumnWidth(3, 100);
-        columnModel.setColumnWidth(4, 100);
-        servicesTable.setColumnModel(columnModel);
+        List<Item> services = ch.getServices(need, city);
 
-        String[] headers = {"Name", "Phone", "Services Offered", "Locality"};
-        String[][] services = ch.getServices(need, city);
-
-        servicesTable.setHeaderAdapter(new SimpleTableHeaderAdapter(this, headers));
-        servicesTable.setDataAdapter(new SimpleTableDataAdapter(this, services));
+        RecyclerView available = findViewById(R.id.rv_available);
+        available.setLayoutManager(new LinearLayoutManager(this));
+        available.setAdapter(new adapter(getApplicationContext(), services));
     }
 
     private void askPermission() {
