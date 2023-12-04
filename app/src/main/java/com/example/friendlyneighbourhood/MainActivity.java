@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         if (ch.signin(username, password)) {
             Intent myIntent = new Intent(this, Home.class);
             startActivity(myIntent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else {
             Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
         }
@@ -57,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private void signup() {
         Intent myIntent = new Intent(this, Signup.class);
         startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

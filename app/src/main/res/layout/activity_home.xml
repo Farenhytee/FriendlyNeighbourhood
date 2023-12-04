@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home"
-    android:background="@drawable/background">
+    android:background="@drawable/base_background">
 
     <Spinner
         android:id="@+id/spin_allServices"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginTop="48dp"
+        android:fontFamily="sans-serif-light"
         android:autofillHints="Select Service"
         android:background="@drawable/custom_et"
         android:paddingLeft="10dp"
@@ -26,7 +27,9 @@
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/custom_but"
+        android:textColor="@color/white"
         android:text="Search"
+        android:fontFamily="sans-serif-light"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

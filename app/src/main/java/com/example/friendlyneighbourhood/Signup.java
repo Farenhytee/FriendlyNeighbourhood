@@ -100,4 +100,10 @@ public class Signup extends AppCompatActivity {
             Toast.makeText(this, "Enter all fields", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
 }
