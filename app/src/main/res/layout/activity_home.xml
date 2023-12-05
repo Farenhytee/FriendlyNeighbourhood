@@ -1,48 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home"
-    android:background="@drawable/base_background">
+    android:fillViewport="true">
 
-    <Spinner
-        android:id="@+id/spin_allServices"
-        android:layout_width="280dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="48dp"
-        android:fontFamily="sans-serif-light"
-        android:autofillHints="Select Service"
-        android:background="@drawable/custom_et"
-        android:paddingLeft="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/base_background"
+        tools:context=".Home">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/but_searchServices"
-        android:layout_width="280dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/custom_but"
-        android:textColor="@color/white"
-        android:text="Search"
-        android:fontFamily="sans-serif-light"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spin_allServices" />
+        <Spinner
+            android:id="@+id/spin_allServices"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="48dp"
+            android:autofillHints="Select Service"
+            android:background="@drawable/custom_et"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_available"
-        android:layout_width="491dp"
-        android:layout_height="542dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/but_searchServices" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/but_searchServices"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_but"
+            android:fontFamily="sans-serif-light"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spin_allServices" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_available"
+            android:layout_width="491dp"
+            android:layout_height="542dp"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/but_searchServices" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
