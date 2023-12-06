@@ -40,17 +40,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spin_allServices" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/but_postJob"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/custom_but"
+            android:fontFamily="sans-serif-light"
+            android:text="Post a job"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/but_searchServices" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_available"
             android:layout_width="358dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/but_searchServices"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/but_postJob"
+            app:layout_constraintVertical_bias="0.124" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
