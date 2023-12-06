@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class PostJob extends AppCompatActivity {
     String puname;
@@ -46,6 +47,7 @@ public class PostJob extends AppCompatActivity {
     private void register () {
         ConnectionHelper ch = new ConnectionHelper();
         ch.postJob(puname, jobTypes.getSelectedItem().toString(), jobDesc.getText().toString());
+        Toast.makeText(this, "Job posted!", Toast.LENGTH_SHORT).show();
         finish();
     }
 
