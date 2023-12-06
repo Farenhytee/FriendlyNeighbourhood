@@ -63,6 +63,8 @@ public class Home extends AppCompatActivity {
     Button search;
     String city;
     private final int REQUEST_CODE = 100;
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
