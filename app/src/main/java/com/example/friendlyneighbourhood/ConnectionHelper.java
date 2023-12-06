@@ -49,10 +49,10 @@ public class ConnectionHelper {
         return flag;
     }
 
-    public void register(String fname, String lname, String uname, String email, String password, String city, String locality) {
+    public void register(String fname, String lname, String uname, String email, String password, String city, String locality, String phone) {
         try {
             Connection regConn = ConnectionBuild();
-            PreparedStatement pstmt = regConn.prepareStatement("INSERT INTO users (fname, lname, username, email, password, city, locality) VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement pstmt = regConn.prepareStatement("INSERT INTO users (fname, lname, username, email, password, city, locality, phone) VALUES (?,?,?,?,?,?,?,?)");
             pstmt.setString(1, fname);
             pstmt.setString(2, lname);
             pstmt.setString(3, uname);
@@ -60,6 +60,7 @@ public class ConnectionHelper {
             pstmt.setString(5, password);
             pstmt.setString(6, city);
             pstmt.setString(7, locality);
+            pstmt.setString(8, phone);
 
             pstmt.executeUpdate();
             regConn.close();
@@ -91,5 +92,30 @@ public class ConnectionHelper {
             Log.e("Error", e.getMessage());
         }
         return null;
+    }
+
+    public void postJob(String uname, String jobtype, String jobdesc) {
+        try {
+            String phone = "", loc = "", city = "";
+            Connection postConn = ConnectionBuild();
+            PreparedStatement pstmt1 = postConn.prepareStatement("SELECT phone, locality, city FROM users WHERE username='" + uname + "'");
+            ResultSet rs1 = pstmt1.executeQuery();
+            while (rs1.next()) {
+                phone = rs1.getString(1);
+                loc = rs1.getString(2);
+                city = rs1.getString(3);
+            }
+
+            PreparedStatement pstmt2 = postConn.prepareStatement("INSERT INTO open_jobs (n_user, phone, locality, city, job_type, job_info) VALUES (?,?,?,?,?,?)");
+            pstmt2.setString(1, uname);
+            pstmt2.setString(2, phone);
+            pstmt2.setString(3, loc);
+            pstmt2.setString(4, city);
+            pstmt2.setString(5, jobtype);
+            pstmt2.setString(6, jobdesc);
+            pstmt2.executeUpdate();
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
     }
 }

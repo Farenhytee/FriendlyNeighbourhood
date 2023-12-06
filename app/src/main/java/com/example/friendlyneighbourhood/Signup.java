@@ -12,8 +12,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Signup extends AppCompatActivity {
-    EditText r_fname, r_lname, r_uname, r_email, r_pass;
-    String fname, lname, uname, email, pass, city, locality;
+    EditText r_fname, r_lname, r_uname, r_email, r_pass, r_phone;
+    String fname, lname, uname, email, pass, city, locality, phone;
     Button signup;
     Spinner regcity, reglocality;
 
@@ -27,6 +27,7 @@ public class Signup extends AppCompatActivity {
         r_uname = findViewById(R.id.et_regUsername);
         r_email = findViewById(R.id.et_regEmail);
         r_pass = findViewById(R.id.et_regPassword);
+        r_phone = findViewById(R.id.et_phone);
 
         String[] cities = {"Ajmer", "Jaipur", "Delhi", "Mumbai"};
         regcity = findViewById(R.id.spin_regCity);
@@ -91,9 +92,10 @@ public class Signup extends AppCompatActivity {
         pass = r_pass.getText().toString();
         city = regcity.getSelectedItem().toString();
         locality = reglocality.getSelectedItem().toString();
+        phone = r_phone.getText().toString();
 
-        if (!fname.equals("") && !lname.equals("") && !uname.equals("") && !email.equals("") && !pass.equals("") && !city.equals("") && !locality.equals("")) {
-            conn.register(fname, lname, uname, email, pass, city, locality);
+        if (!fname.equals("") && !lname.equals("") && !uname.equals("") && !email.equals("") && !pass.equals("") && !city.equals("") && !locality.equals("")&& !phone.equals("")) {
+            conn.register(fname, lname, uname, email, pass, city, locality, phone);
             Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show();
             finish();
         } else {

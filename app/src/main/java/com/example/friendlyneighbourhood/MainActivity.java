@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
         password = etPassword.getText().toString();
 
         if (ch.signin(username, password)) {
-            Intent myIntent = new Intent(this, Home.class);
-            startActivity(myIntent);
+            Intent i = new Intent(this, Home.class);
+            i.putExtra("key", username);
+            startActivity(i);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else {
             Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();

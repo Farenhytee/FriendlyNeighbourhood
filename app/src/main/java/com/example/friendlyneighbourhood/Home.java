@@ -60,7 +60,7 @@ import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 public class Home extends AppCompatActivity {
     String need;
     Spinner allServices;
-    Button search;
+    Button search, jobPost;
     String city;
     private final int REQUEST_CODE = 100;
 
@@ -103,6 +103,20 @@ public class Home extends AppCompatActivity {
         } else {
             askPermission();
         }
+
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("key");
+
+        jobPost = findViewById(R.id.but_postJob);
+        jobPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, PostJob.class);
+                i.putExtra("key2", value);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
     }
 
     private void search() {
