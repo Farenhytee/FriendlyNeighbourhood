@@ -106,13 +106,16 @@ public class ConnectionHelper {
                 city = rs1.getString(3);
             }
 
-            PreparedStatement pstmt2 = postConn.prepareStatement("INSERT INTO open_jobs (n_user, phone, locality, city, job_type, job_info) VALUES (?,?,?,?,?,?)");
+            PreparedStatement pstmt2 = postConn.prepareStatement("INSERT INTO open_jobs (n_user, phone, locality, city, job_type, job_info, lowest_bid, lb_uname, ended) VALUES (?,?,?,?,?,?,?,?,?)");
             pstmt2.setString(1, uname);
             pstmt2.setString(2, phone);
             pstmt2.setString(3, loc);
             pstmt2.setString(4, city);
             pstmt2.setString(5, jobtype);
             pstmt2.setString(6, jobdesc);
+            pstmt2.setInt(7, 0);
+            pstmt2.setString(8, "none");
+            pstmt2.setString(9, "false");
             pstmt2.executeUpdate();
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
